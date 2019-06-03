@@ -1,18 +1,26 @@
 import React from 'react'; 
 import injectSheet from 'react-jss';
-import { LIGHT_BLUE, LIGHT_GREEN } from '../../../constants/color';
 const styles = {
-    lightBlue: {
-        background: LIGHT_BLUE,
+    button: {
+        fontSize: '16px',
+        display: 'inline-block',
+        backgroundColor: props => props.buttonColor ? props.buttonColor : '',
     },
-    lightGreen: {
-        background: LIGHT_GREEN,
-    }
+
 };
 //default button component
-const ButtonComponent = (props) => (
-    <button className={props.className} 
-        onClick={props.onClickHandler}> {props.title} </button>
-)
+class ButtonComponent extends React.Component{
+    render(){
+        const {classes, title = 'Yes', onClickHandler, buttonColor} = this.props;
+
+        return(
+            <React.Fragment>
+            <button type="button" className={classes.button} color={buttonColor}
+                onClick={onClickHandler}> {title} </button>
+            </React.Fragment>
+        )
+    }
+}
+
 
 export default injectSheet(styles)(ButtonComponent);
